@@ -13,6 +13,9 @@ Associated database:  https://www.opentargets.org/projects/effectorness
 
 ## Files
 **1. matrix.mtx.gz**            Gene expression matrix containing counts for 20,953 genes in 5,269 cells. This file is in sparse Matrix (.mtx) format and was gzip compressed. 
+
 **2. barcodes.tsv.gz**          Cell IDs corresponding to each column of the expression matrix. This file is in plain text format (.tsv) and was gzip compressed.
+
 **3. features.tsv.gz**          Gene names corresponding to each row of the expression matrix. This file is in plain text format (.tsv) and was gzip compressed.
+
 **4. cell-annotations.tsv.gz**  Table with annotations and metadata associated with each single cell in the expression matrix. This fils in in tab-separate value (.tsv) format and was gzip compressed.
