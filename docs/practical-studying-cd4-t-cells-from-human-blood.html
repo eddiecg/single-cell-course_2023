@@ -156,7 +156,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="3.1" data-path="practical-studying-cd4-t-cells-from-human-blood.html"><a href="practical-studying-cd4-t-cells-from-human-blood.html#overview"><i class="fa fa-check"></i><b>3.1</b> Overview</a></li>
 <li class="chapter" data-level="3.2" data-path="practical-studying-cd4-t-cells-from-human-blood.html"><a href="practical-studying-cd4-t-cells-from-human-blood.html#loading-data-and-r-libraries"><i class="fa fa-check"></i><b>3.2</b> Loading data and R libraries</a></li>
-<li class="chapter" data-level="3.3" data-path="practical-studying-cd4-t-cells-from-human-blood.html"><a href="practical-studying-cd4-t-cells-from-human-blood.html#formatting-data-according-for-analysis"><i class="fa fa-check"></i><b>3.3</b> Formatting data according for analysis</a>
+<li class="chapter" data-level="3.3" data-path="practical-studying-cd4-t-cells-from-human-blood.html"><a href="practical-studying-cd4-t-cells-from-human-blood.html#formatting-data-for-analysis"><i class="fa fa-check"></i><b>3.3</b> Formatting data for analysis</a>
 <ul>
 <li class="chapter" data-level="3.3.1" data-path="practical-studying-cd4-t-cells-from-human-blood.html"><a href="practical-studying-cd4-t-cells-from-human-blood.html#creating-a-seurat-object"><i class="fa fa-check"></i><b>3.3.1</b> Creating a Seurat object</a></li>
 <li class="chapter" data-level="3.3.2" data-path="practical-studying-cd4-t-cells-from-human-blood.html"><a href="practical-studying-cd4-t-cells-from-human-blood.html#how-are-single-cell-measurements-actually-handled-by-the-computer"><i class="fa fa-check"></i><b>3.3.2</b> How are single-cell measurements actually handled by the computer?</a></li>
@@ -203,10 +203,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In this course, we will analyse a data set of CD4+ T cells in circulating blood obtained from four healthy volunteers. This data comes from a study published in 2020 by myself and colleagues, and titled <strong>Single-cell transcriptomics identifies an effectorness gradient shaping the response of CD4+ T cells to cytokines</strong>.</p>
 <p>For this study, we drew blood from healthy research participants and used a combination of laboratory techniques to isolate naive and memory CD4+ T cells from these blood samples. CD4+ T cells are one of the main participants in the immune response: they protect us against pathogens by telling the rest of the immune system what to do. However, we do not yet fully understand just how diverse these cells are and how much they can adapt to the environment in which they are present. That’s what our study tried to find out.</p>
 <p>The experimental design of our study is summarised in the following diagram:</p>
+<center>
 <div class="figure">
 <img src="figures/experimental-design.png" alt="" />
 <p class="caption">Experimental design: we isolated naive and memory CD4 possitive T cells from four healthy volunteers and profiled them at several points in time</p>
 </div>
+</center>
 <p>While our study sequenced more than 40,000 cells, that scale of data would be difficult to deal with in a regular laptop without taking up most of your computer memory. Thus, I have prepared a smaller subset of that data set, which will limit our analysis for this course to only one of the conditions we studied: cells obtained directly from blood and sequenced without any further treatment. This is what’s contained in the example data set you downloaded from GitHub.</p>
 </div>
 <div id="loading-data-and-r-libraries" class="section level2 hasAnchor" number="3.2">
@@ -220,8 +222,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We will also read into memory the <em>cell-annotations.tsv</em> file, which contains information for each cell, based on the observations we published in our study.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="practical-studying-cd4-t-cells-from-human-blood.html#cb11-1" aria-hidden="true" tabindex="-1"></a>cell_anns <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">file =</span> <span class="st">&quot;./data/cell-annotations.tsv.gz&quot;</span>, <span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
 </div>
-<div id="formatting-data-according-for-analysis" class="section level2 hasAnchor" number="3.3">
-<h2><span class="header-section-number">3.3</span> Formatting data according for analysis<a href="practical-studying-cd4-t-cells-from-human-blood.html#formatting-data-according-for-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="formatting-data-for-analysis" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Formatting data for analysis<a href="practical-studying-cd4-t-cells-from-human-blood.html#formatting-data-for-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="creating-a-seurat-object" class="section level3 hasAnchor" number="3.3.1">
 <h3><span class="header-section-number">3.3.1</span> Creating a Seurat object<a href="practical-studying-cd4-t-cells-from-human-blood.html#creating-a-seurat-object" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>While our data has been loaded into R successfully, it is still not in the most convenient format for us to analyse. Thus, we will use it to create a so called “Seurat Object”. This object is a data structure specifically designed for single-cell data analysis, and which will make our lives easier down the line. You can create a Seurat Object by running the following line:</p>

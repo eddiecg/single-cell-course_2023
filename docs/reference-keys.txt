@@ -11,7 +11,7 @@ verifying-set-up
 practical-studying-cd4-t-cells-from-human-blood
 overview
 loading-data-and-r-libraries
-formatting-data-according-for-analysis
+formatting-data-for-analysis
 creating-a-seurat-object
 how-are-single-cell-measurements-actually-handled-by-the-computer
 adding-cell-annotations-to-our-matrix
